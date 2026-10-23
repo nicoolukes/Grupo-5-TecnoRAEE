@@ -1,4 +1,4 @@
-package com.aydsii.demo.dto;
+package com.aydsii.demo.DTO;
 
 public class ConvocatoriaDTO {
     

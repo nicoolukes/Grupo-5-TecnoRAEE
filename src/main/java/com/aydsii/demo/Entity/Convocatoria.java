@@ -1,4 +1,4 @@
-package com.aydsii.demo.entity;
+package com.aydsii.demo.Entity;
 
 public class Convocatoria {
     
