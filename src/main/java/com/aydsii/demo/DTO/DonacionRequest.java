@@ -1,4 +1,4 @@
-package com.aydsii.demo.DTO;
+package com.aydsii.demo.dto;
 
 public class DonacionRequest {
     

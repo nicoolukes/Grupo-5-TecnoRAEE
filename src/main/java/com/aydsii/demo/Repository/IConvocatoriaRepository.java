@@ -1,4 +1,4 @@
-package com.aydsii.demo.Repository;
+package com.aydsii.demo.repository;
 
 public interface IConvocatoriaRepository {
     

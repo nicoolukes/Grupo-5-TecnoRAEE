@@ -1,4 +1,4 @@
-package com.aydsii.demo.Exception;
+package com.aydsii.demo.exception;
 
 public class GlobalExceptionHandler {
     
