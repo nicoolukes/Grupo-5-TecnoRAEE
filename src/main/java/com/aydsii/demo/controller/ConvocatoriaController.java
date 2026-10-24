@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
  
 import com.aydsii.demo.dto.ConvocatoriaDTO;
-import com.aydsii.demo.interfas.IConvocatoriaService;
+import com.aydsii.demo.dto.APIResponse;
+import com.aydsii.demo.interfaces.IConvocatoriaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -27,7 +28,7 @@ public class ConvocatoriaController {
  
     @Operation(
         summary = "Consultar convocatorias",
-        description = "Lista todas las convocatorias"
+        description = "Lista todas las convocatorias con una descripción breve de cada una, incluyendo nombre, fecha y estado."
     )
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Listado de convocatorias")
@@ -37,6 +38,7 @@ public class ConvocatoriaController {
  
         List<ConvocatoriaDTO> convocatorias = convocatoriaService.consultarConvocatorias();
  
-        return ResponseEntity.ok(new APIResponse<>(HttpStatus.OK.value(), "Listado de convocatorias", convocatorias));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(APIResponse.ok("Listado de convocatorias", convocatorias));
     }
 }

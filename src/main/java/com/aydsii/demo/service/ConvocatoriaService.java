@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.aydsii.demo.dto.ConvocatoriaDTO;
 import com.aydsii.demo.entity.Convocatoria;
-import com.aydsii.demo.interfas.IConvocatoriaService;
+import com.aydsii.demo.interfaces.IConvocatoriaService;
 import com.aydsii.demo.repository.IConvocatoriaRepository;
 import com.aydsii.demo.mapper.ConvocatoriaMap;
 
