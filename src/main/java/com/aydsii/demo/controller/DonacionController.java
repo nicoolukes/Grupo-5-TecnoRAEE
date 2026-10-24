@@ -20,18 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
  
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
- 
 @RestController
-@RequestMapping("/api/CargarRAEEDonado")
+@RequestMapping("/api/donaciones")
 @RequiredArgsConstructor
-@Tag(name = "Donaciones", description = "CU-01 Cargar RAEEs donados")
+@Tag(name = "Donaciones", description = "CU-01 Cargar donacion")
 public class DonacionController {
  
     private final IDonacionService service;
-    private final IRaeeRepository raeeRepository;
  
     @Operation(
             summary = "Cargar una donación de RAEEs",
@@ -42,7 +37,7 @@ public class DonacionController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "201", description = "Donación registrada"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
-                    responseCode = "400", description = "Datos inválidos (cantidad, campos obligatorios, sin detalles)"),
+                    responseCode = "400", description = "Datos inválidos"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "404", description = "El id del RAEE no existe")
     })
@@ -50,25 +45,8 @@ public class DonacionController {
     public ResponseEntity<APIResponse<DonacionResponse>> registrarDonacion(
             @Valid @RequestBody DonacionRequest request) {
  
-        validarRaee(request);
- 
         DonacionResponse response = service.registrarDonacion(request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(APIResponse.ok("Donación registrada correctamente", response));
-    }
- 
-    /** FA-02: todos los ids de RAEE deben existir; además no se admiten RAEEs repetidos (PK compuesta). */
-    private void validarRaee(DonacionRequest request) {
-        List<Integer> ids = request.getDetalles().stream()
-                .map(DetalleDonacionRequest::getId)
-                .toList();
-        Set<Integer> idsUnicos = new HashSet<>(ids);
- 
-        if (idsUnicos.size() != ids.size()) {
-            throw new BusinessException("No se puede repetir un mismo RAEE en los detalles de la donación");
-        }
-        if (raeeRepository.findAllById(idsUnicos).size() != idsUnicos.size()) {
-            throw new RaeeNotFoundException("El id del RAEE no existe");
-        }
     }
 }
