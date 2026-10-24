@@ -3,15 +3,17 @@ package com.aydsii.demo.service;
 import com.aydsii.demo.dto.DetalleDonacionRequest;
 import com.aydsii.demo.dto.DonacionRequest;
 import com.aydsii.demo.dto.DonacionResponse;
-import com.aydsii.demo.entity.DetalleDonacion;
 import com.aydsii.demo.entity.Donacion;
+import com.aydsii.demo.entity.Persona;
 import com.aydsii.demo.entity.Raee;
 import com.aydsii.demo.exception.BusinessException;
+import com.aydsii.demo.exception.PersonaNotFoundException;
 import com.aydsii.demo.exception.RaeeNotFoundException;
 import com.aydsii.demo.interfaces.ICalculadoraPuntos;
 import com.aydsii.demo.interfaces.IDonacionService;
 import com.aydsii.demo.mapper.IDonacionMapper;
 import com.aydsii.demo.repository.IDonacionRepository;
+import com.aydsii.demo.repository.IPersonaRepository;
 import com.aydsii.demo.repository.IRaeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,14 +34,23 @@ public class DonacionService implements IDonacionService {
     private final IDonacionRepository donacionRepository;
     private final IDonacionMapper mapper;
     private final ICalculadoraPuntos calculadora;
+    private final IPersonaRepository personaRepository;
  
     @Override
     @Transactional
     public DonacionResponse registrarDonacion(DonacionRequest request) {
-        
+
+        Persona persona = personaRepository.findById(request.getIdPersona())
+            .orElseThrow(() -> new PersonaNotFoundException("El id de la persona no existe"));
+
+        if (!"Personal Convocatoria".equals(persona.getRol().getNombre())) {
+            throw new BusinessException("La persona no tiene permisos para registrar donaciones");
+        }
+
         Map<Integer, Raee> raeePorId = obtenerRaeesValidados(request);
  
         Donacion donacion = mapper.toDonacion(request);
+        donacion.setPersona(persona);
  
         for (DetalleDonacionRequest detalleRequest : request.getDetalles()) {
             Raee raee = raeePorId.get(detalleRequest.getId());

@@ -92,6 +92,15 @@ public class GlobalExceptionHandler {
     }
 
     /*
+    404 - Not Found.
+    El id de la persona que registra la donación no existe en el sistema.
+    */
+    @ExceptionHandler(PersonaNotFoundException.class)
+    public ResponseEntity<APIResponse<Void>> handlePersonaNotFound(PersonaNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(APIResponse.error(ex.getMessage()));
+    }
+
+    /*
     500 - Internal Server Error.
     Cualquier error inesperado que no tenga un handler específico.
     Se loguea el detalle y al cliente solo se le devuelve un mensaje genérico.

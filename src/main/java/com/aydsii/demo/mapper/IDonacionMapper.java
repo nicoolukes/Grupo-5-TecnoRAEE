@@ -17,6 +17,7 @@ public interface IDonacionMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "fecha", expression = "java(java.time.LocalDate.now())")
     @Mapping(target = "detalles", ignore = true)
+    @Mapping(target = "persona", ignore = true)
     Donacion toDonacion(DonacionRequest request);
  
     @Mapping(target = "id", ignore = true)
