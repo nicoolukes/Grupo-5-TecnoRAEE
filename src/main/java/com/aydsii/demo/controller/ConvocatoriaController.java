@@ -31,7 +31,8 @@ public class ConvocatoriaController {
         description = "Lista todas las convocatorias con una descripción breve de cada una, incluyendo nombre, fecha y estado."
     )
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Listado de convocatorias")
+        @ApiResponse(responseCode = "200", description = "Listado de convocatorias"),
+        @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
     @GetMapping
     public ResponseEntity<APIResponse<List<ConvocatoriaDTO>>> consultarConvocatorias() {
