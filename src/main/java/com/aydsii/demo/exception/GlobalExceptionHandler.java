@@ -40,6 +40,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<APIResponse<Void>> handleGeneric(Exception ex) {
+        
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(APIResponse.error("Error interno del servidor"));
     }
