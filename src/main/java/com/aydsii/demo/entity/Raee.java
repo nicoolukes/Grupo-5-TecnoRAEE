@@ -24,12 +24,13 @@ public class Raee {
  
     private String nombre;
  
+    @Column(nullable = false)
     private Integer puntos;
  
     @Column(name = "unidad_medida")
     private String unidadMedida;
  
-    @Column(name = "puntos_extra")
+    @Column(name = "puntos_extra", nullable = false)
     private Integer puntosExtra;
  
     @ManyToOne(fetch = FetchType.LAZY)

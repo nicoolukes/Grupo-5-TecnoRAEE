@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -15,10 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @Schema(description = "Datos para registrar una donación de RAEEs")
 public class DonacionRequest {
-
-    @Schema(description = "Opcional. El sistema registra siempre la fecha actual (CU-01, paso 5)",
-            example = "2026-10-23", accessMode = Schema.AccessMode.READ_ONLY)
-    private LocalDate fecha;
 
     @NotEmpty(message = "La donación debe tener como mínimo un detalle")
     @Valid
