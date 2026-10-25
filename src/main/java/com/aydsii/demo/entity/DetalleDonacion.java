@@ -1,6 +1,7 @@
 package com.aydsii.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -31,8 +32,10 @@ public class DetalleDonacion {
     @JoinColumn(name = "id_raee")
     private Raee raee;
  
+    @Column(nullable = false)
     private Integer cantidad;
  
     /** true = "Funcional", false = "No funcional" (RN-04). */
+    @Column(nullable = false)
     private Boolean estado;
 }

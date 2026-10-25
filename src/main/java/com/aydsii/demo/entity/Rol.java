@@ -1,31 +1,23 @@
 package com.aydsii.demo.entity;
 
-import org.hibernate.annotations.Audited.Table;
-//import org.hibernate.annotations.CreationTimestamp;
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-//import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import jakarta.persistence.Table;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity 
-@Table (name = "roles")
-@Data
-@NoArgsConstructor 
-@AllArgsConstructor 
+@Entity
+@Table(name = "Roles")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Rol {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_rol;
 
-    @Column(nullable = false, length = 100)
+    @Id
+    @Column(name = "id_rol")
+    private Integer id;
+
     private String nombre;
 }
