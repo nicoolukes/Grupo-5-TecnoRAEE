@@ -32,6 +32,9 @@ public class Donacion {
     private Integer id;
  
     private LocalDate fecha;
+
+    @Column(name = "puntos_totales", nullable = false)
+    private Integer puntosTotales;
  
     @OneToMany(mappedBy = "donacion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetalleDonacion> detalles = new ArrayList<>();
@@ -39,9 +42,4 @@ public class Donacion {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_persona", nullable = false)
     private Persona persona;
- 
-    public void agregarDetalle(DetalleDonacion detalle) {
-        detalle.setDonacion(this);
-        this.detalles.add(detalle);
-    }
 }

@@ -5,6 +5,8 @@ import com.aydsii.demo.dto.DonacionRequest;
 import com.aydsii.demo.dto.DonacionResponse;
 import com.aydsii.demo.interfaces.IDonacionService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -31,11 +33,16 @@ public class DonacionController {
     )
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
-                    responseCode = "201", description = "Donación registrada"),
+                    responseCode = "201",
+                    description = "Donación registrada"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
-                    responseCode = "400", description = "Datos inválidos"),
+                    responseCode = "400",
+                    description = "Datos inválidos (cantidad, campos obligatorios, sin detalles)",
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
-                    responseCode = "404", description = "El id del RAEE no existe")
+                    responseCode = "404",
+                    description = "El id del RAEE o de la persona no existe",
+                    content = @Content(schema = @Schema(implementation = APIResponse.class)))
     })
     @PostMapping
     public ResponseEntity<APIResponse<DonacionResponse>> registrarDonacion(

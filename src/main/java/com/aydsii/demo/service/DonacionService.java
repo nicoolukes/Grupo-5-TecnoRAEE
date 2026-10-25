@@ -3,6 +3,7 @@ package com.aydsii.demo.service;
 import com.aydsii.demo.dto.DetalleDonacionRequest;
 import com.aydsii.demo.dto.DonacionRequest;
 import com.aydsii.demo.dto.DonacionResponse;
+import com.aydsii.demo.entity.DetalleDonacion;
 import com.aydsii.demo.entity.Donacion;
 import com.aydsii.demo.entity.Persona;
 import com.aydsii.demo.entity.Raee;
@@ -43,9 +44,11 @@ public class DonacionService implements IDonacionService {
         Persona persona = personaRepository.findById(request.getIdPersona())
             .orElseThrow(() -> new PersonaNotFoundException("El id de la persona no existe"));
 
+        /* ¿Esto va?
         if (!"Personal Convocatoria".equals(persona.getRol().getNombre())) {
             throw new BusinessException("La persona no tiene permisos para registrar donaciones");
         }
+        */
 
         Map<Integer, Raee> raeePorId = obtenerRaeesValidados(request);
  
@@ -54,13 +57,15 @@ public class DonacionService implements IDonacionService {
  
         for (DetalleDonacionRequest detalleRequest : request.getDetalles()) {
             Raee raee = raeePorId.get(detalleRequest.getId());
-            donacion.agregarDetalle(mapper.toDetalle(detalleRequest, raee));
+            DetalleDonacion detalle = mapper.toDetalle(detalleRequest, raee);
+            detalle.setDonacion(donacion);
+            donacion.getDetalles().add(detalle);
         }
  
+        donacion.setPuntosTotales(calculadora.calcularTotal(donacion));
         donacionRepository.save(donacion);
- 
-        Integer puntosTotales = calculadora.calcularTotal(donacion);
-        return mapper.toResponse(donacion, puntosTotales);
+
+        return mapper.toResponse(donacion);
     }
 
     /** FA-01: los ids deben existir y no pueden repetirse (PK compuesta). */
