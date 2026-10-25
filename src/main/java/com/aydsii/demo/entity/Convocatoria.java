@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.Audited.Table;
-
-
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -15,33 +13,32 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+import com.aydsii.demo.converter.EstadoConvocatoriaConverter;
 import com.aydsii.demo.enums.EstadoConvocatoria;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity 
-@Table (name = "convocatorias")
-@Data
-@NoArgsConstructor 
-@AllArgsConstructor 
+@Table (name = "Convocatorias")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Convocatoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_convocatoria")
-    private int id;
+    private Integer id;
  
-    @Column(name = "descripcion", columnDefinition = "TEXT")
     private String descripcion;
  
-    @Column(name = "nombre", length = 100)
     private String nombre;
  
-    @Column(name = "longitud", precision = 10, scale = 7)
     private BigDecimal longitud;
  
-    @Column(name = "latitud", precision = 10, scale = 7)
     private BigDecimal latitud;
  
     @Column(name = "fecha_hora_inicio")
@@ -50,10 +47,9 @@ public class Convocatoria {
     @Column(name = "fecha_hora_fin")
     private LocalDateTime fechaHoraFin;
  
-    @Column(name = "direccion", length = 150)
     private String direccion;
  
-    @Column(name = "estado", length = 20)
+    @Convert(converter = EstadoConvocatoriaConverter.class)
     private EstadoConvocatoria estado;
  
     @ManyToOne(fetch = FetchType.LAZY)

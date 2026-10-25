@@ -111,6 +111,16 @@ public class GlobalExceptionHandler {
 
     /*
     500 - Internal Server Error.
+    No se pudo recuperar la información de las convocatorias (postcondición de fallo de CU-02).
+    */
+    @ExceptionHandler(ConvocatoriaNoDisponibleException.class)
+    public ResponseEntity<APIResponse<Void>> handleConvocatoriaNoDisponible(ConvocatoriaNoDisponibleException ex) {
+        log.error("Error al recuperar convocatorias", ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(APIResponse.error(ex.getMessage()));
+    }
+
+    /*
+    500 - Internal Server Error.
     Cualquier error inesperado que no tenga un handler específico.
     Se loguea el detalle y al cliente solo se le devuelve un mensaje genérico.
     */

@@ -20,7 +20,7 @@ public class APIResponse<T> {
     @Schema(description = "Indica si la operación fue exitosa", example = "true")
     private boolean success;
 
-    @Schema(description = "Mensaje descriptivo del resultado", example = "Donación registrada correctamente")
+    @Schema(description = "Mensaje descriptivo del resultado", example = "Operación realizada correctamente")
     private String message;
 
     @Schema(description = "Contenido de la respuesta (null cuando hay error)")
