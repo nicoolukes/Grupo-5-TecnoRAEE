@@ -101,6 +101,15 @@ public class GlobalExceptionHandler {
     }
 
     /*
+    403 - Forbidden.
+    La persona no tiene el rol "Personal Convocatoria" y no puede cargar donaciones (RN-06).
+    */
+    @ExceptionHandler(PersonaSinPermisoException.class)
+    public ResponseEntity<APIResponse<Void>> handlePersonaSinPermiso(PersonaSinPermisoException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(APIResponse.error(ex.getMessage()));
+    }
+
+    /*
     500 - Internal Server Error.
     Cualquier error inesperado que no tenga un handler específico.
     Se loguea el detalle y al cliente solo se le devuelve un mensaje genérico.

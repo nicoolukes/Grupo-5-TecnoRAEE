@@ -45,6 +45,12 @@ public class DonacionController {
                         schema = @Schema(implementation = APIResponse.class),
                         examples = @ExampleObject(value = SwaggerExamples.ERROR_CANTIDAD))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "403",
+                    description = "La persona no tiene rol Personal Convocatoria",
+                    content = @Content(mediaType = "application/json",
+                        schema = @Schema(implementation = APIResponse.class),
+                        examples = @ExampleObject(value = SwaggerExamples.ERROR_PERMISOS))),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "404",
                     description = "El id del RAEE o de la persona no existe",
                     content = @Content(mediaType = "application/json",

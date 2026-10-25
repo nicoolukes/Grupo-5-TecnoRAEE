@@ -15,4 +15,8 @@ public class SwaggerExamples {
     public static final String ERROR_PERSONA = """
             { "success": false, "message": "El id de la persona no existe", "data": null }
             """;
+
+    public static final String ERROR_PERMISOS = """
+            { "success": false, "message": "No tiene permisos para registrar donaciones", "data": null }
+            """;
 }

@@ -9,6 +9,7 @@ import com.aydsii.demo.entity.Persona;
 import com.aydsii.demo.entity.Raee;
 import com.aydsii.demo.exception.BusinessException;
 import com.aydsii.demo.exception.PersonaNotFoundException;
+import com.aydsii.demo.exception.PersonaSinPermisoException;
 import com.aydsii.demo.exception.RaeeNotFoundException;
 import com.aydsii.demo.interfaces.ICalculadoraPuntos;
 import com.aydsii.demo.interfaces.IDonacionService;
@@ -36,7 +37,7 @@ public class DonacionService implements IDonacionService {
     private final IDonacionMapper mapper;
     private final ICalculadoraPuntos calculadora;
     private final IPersonaRepository personaRepository;
- 
+    
     @Override
     @Transactional
     public DonacionResponse registrarDonacion(DonacionRequest request) {
@@ -44,11 +45,9 @@ public class DonacionService implements IDonacionService {
         Persona persona = personaRepository.findById(request.getIdPersona())
             .orElseThrow(() -> new PersonaNotFoundException("El id de la persona no existe"));
 
-        /* ¿Esto va?
         if (!"Personal Convocatoria".equals(persona.getRol().getNombre())) {
-            throw new BusinessException("La persona no tiene permisos para registrar donaciones");
+            throw new PersonaSinPermisoException("La persona no tiene permisos para registrar donaciones");
         }
-        */
 
         Map<Integer, Raee> raeePorId = obtenerRaeesValidados(request);
  
