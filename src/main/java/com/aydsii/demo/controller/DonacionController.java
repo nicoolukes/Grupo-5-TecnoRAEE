@@ -4,8 +4,11 @@ import com.aydsii.demo.dto.APIResponse;
 import com.aydsii.demo.dto.DonacionRequest;
 import com.aydsii.demo.dto.DonacionResponse;
 import com.aydsii.demo.interfaces.IDonacionService;
+
+import config.SwaggerExamples;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,11 +41,18 @@ public class DonacionController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "400",
                     description = "Datos inválidos (cantidad, campos obligatorios, sin detalles)",
-                    content = @Content(schema = @Schema(implementation = APIResponse.class))),
+                    content = @Content(mediaType = "application/json",
+                        schema = @Schema(implementation = APIResponse.class),
+                        examples = @ExampleObject(value = SwaggerExamples.ERROR_CANTIDAD))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "404",
                     description = "El id del RAEE o de la persona no existe",
-                    content = @Content(schema = @Schema(implementation = APIResponse.class)))
+                    content = @Content(mediaType = "application/json",
+                        schema = @Schema(implementation = APIResponse.class),
+                        examples = {
+                                @ExampleObject(name = "RAEE inexistente", value = SwaggerExamples.ERROR_RAEE),
+                                @ExampleObject(name = "Persona inexistente", value = SwaggerExamples.ERROR_PERSONA)
+                        }))
     })
     @PostMapping
     public ResponseEntity<APIResponse<DonacionResponse>> registrarDonacion(
