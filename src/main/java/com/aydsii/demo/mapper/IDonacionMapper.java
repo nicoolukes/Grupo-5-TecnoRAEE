@@ -25,7 +25,7 @@ public interface IDonacionMapper {
     @Mapping(target = "donacion", ignore = true)
     @Mapping(target = "raee", source = "raee")
     @Mapping(target = "cantidad", source = "request.cantidad")
-    @Mapping(target = "estado", source = "request.estado")
+    @Mapping(target = "funciona", source = "request.funciona")
     DetalleDonacion toDetalle(DetalleDonacionRequest request, Raee raee);
  
     DonacionResponse toResponse(Donacion donacion);

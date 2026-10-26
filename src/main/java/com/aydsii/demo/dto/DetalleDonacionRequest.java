@@ -22,7 +22,7 @@ public class DetalleDonacionRequest {
     @Schema(description = "Cantidad donada (entero mayor a cero)", example = "2")
     private Integer cantidad;
  
-    @NotNull(message = "El estado es obligatorio")
-    @Schema(description = "Estado del RAEE: true = Funcional, false = No funcional", example = "true")
-    private Boolean estado;
+    @NotNull(message = "El campo funciona es obligatorio")
+    @Schema(description = "Indica si el RAEE funciona: true = Funcional, false = No funcional", example = "true")
+    private Boolean funciona;
 }

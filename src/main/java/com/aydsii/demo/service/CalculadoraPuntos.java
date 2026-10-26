@@ -19,7 +19,7 @@ public class CalculadoraPuntos implements ICalculadoraPuntos {
         for (DetalleDonacion detalle : donacion.getDetalles()) {
             Raee raee = detalle.getRaee();
             int puntos = raee.getPuntos() != null ? raee.getPuntos() : 0;
-            int extra = Boolean.TRUE.equals(detalle.getEstado()) && raee.getPuntosExtra() != null
+            int extra = Boolean.TRUE.equals(detalle.getFunciona()) && raee.getPuntosExtra() != null
                     ? raee.getPuntosExtra() : 0;
             total += detalle.getCantidad() * (puntos + extra);
         }

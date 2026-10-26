@@ -17,6 +17,6 @@ public class DetalleDonacionResponse {
     @Schema(description = "Cantidad donada", example = "2")
     private Integer cantidad;
  
-    @Schema(description = "true = Funcional, false = No funcional", example = "true")
-    private Boolean estado;
+    @Schema(description = "Indica si el RAEE funciona: true = Funcional, false = No funcional", example = "true")
+    private Boolean funciona;
 }

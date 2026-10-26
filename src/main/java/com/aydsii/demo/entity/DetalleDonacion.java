@@ -35,7 +35,7 @@ public class DetalleDonacion {
     @Column(nullable = false)
     private Integer cantidad;
  
-    /** true = "Funcional", false = "No funcional" (RN-04). */
+    /** true = funciona (Funcional), false = no funciona (No funcional). */
     @Column(nullable = false)
-    private Boolean estado;
+    private Boolean funciona;
 }
