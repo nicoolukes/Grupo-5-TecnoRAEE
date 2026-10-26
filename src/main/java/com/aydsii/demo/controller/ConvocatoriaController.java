@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aydsii.demo.dto.ConvocatoriaDTO;
 import com.aydsii.demo.dto.APIResponse;
 import com.aydsii.demo.interfaces.IConvocatoriaService;
+import com.aydsii.demo.config.SwaggerExamples;
 
-import config.SwaggerExamples;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;

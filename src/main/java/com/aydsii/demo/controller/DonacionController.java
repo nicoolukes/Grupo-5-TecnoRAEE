@@ -4,8 +4,8 @@ import com.aydsii.demo.dto.APIResponse;
 import com.aydsii.demo.dto.DonacionRequest;
 import com.aydsii.demo.dto.DonacionResponse;
 import com.aydsii.demo.interfaces.IDonacionService;
+import com.aydsii.demo.config.SwaggerExamples;
 
-import config.SwaggerExamples;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;

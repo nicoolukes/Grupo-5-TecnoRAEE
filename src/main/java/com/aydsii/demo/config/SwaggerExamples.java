@@ -1,4 +1,4 @@
-package config;
+package com.aydsii.demo.config;
 
 public class SwaggerExamples {
 
