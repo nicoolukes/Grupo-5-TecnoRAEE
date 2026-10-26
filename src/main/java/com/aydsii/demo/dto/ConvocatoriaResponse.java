@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @NoArgsConstructor 
 @AllArgsConstructor
 @Schema(description = "Convocatoria disponible para consulta")
-public class ConvocatoriaDTO {
+public class ConvocatoriaResponse {
 
     @Schema(description = "Nombre de la convocatoria", example = "Jornada de reciclaje tecnológico")
     private String nombre;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
  
-import com.aydsii.demo.dto.ConvocatoriaDTO;
+import com.aydsii.demo.dto.ConvocatoriaResponse;
 import com.aydsii.demo.dto.APIResponse;
 import com.aydsii.demo.interfaces.IConvocatoriaService;
 import com.aydsii.demo.config.SwaggerExamples;
@@ -52,9 +52,9 @@ public class ConvocatoriaController {
                 examples = @ExampleObject(value = SwaggerExamples.ERROR_CONVOCATORIAS)))
     })
     @GetMapping
-    public ResponseEntity<APIResponse<List<ConvocatoriaDTO>>> consultarConvocatorias() {
+    public ResponseEntity<APIResponse<List<ConvocatoriaResponse>>> consultarConvocatorias() {
  
-        List<ConvocatoriaDTO> convocatorias = convocatoriaService.consultarConvocatorias();
+        List<ConvocatoriaResponse> convocatorias = convocatoriaService.consultarConvocatorias();
  
         String mensaje = convocatorias.isEmpty()
                 ? "No hay convocatorias disponibles"      // FA-01
