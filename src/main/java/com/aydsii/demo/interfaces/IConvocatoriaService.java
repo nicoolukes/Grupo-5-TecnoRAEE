@@ -2,8 +2,8 @@ package com.aydsii.demo.interfaces;
 
 import java.util.List;
 
-import com.aydsii.demo.dto.ConvocatoriaDTO;
+import com.aydsii.demo.dto.ConvocatoriaResponse;
 
 public interface IConvocatoriaService {
-    List<ConvocatoriaDTO> consultarConvocatorias();
+    List<ConvocatoriaResponse> consultarConvocatorias();
 }

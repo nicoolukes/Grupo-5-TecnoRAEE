@@ -8,5 +8,5 @@ import com.aydsii.demo.entity.Convocatoria;
 import com.aydsii.demo.enums.EstadoConvocatoria;
 
 public interface IConvocatoriaRepository extends JpaRepository<Convocatoria, Integer> {
-    List<Convocatoria> findByEstadoInOrderByFechaHoraInicioAsc(Collection<EstadoConvocatoria> estados);
+    List<Convocatoria> findByEstadoInOrderByFechaHoraInicioAsc(List<EstadoConvocatoria> estados);
 }
