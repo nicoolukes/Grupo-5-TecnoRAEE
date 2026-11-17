@@ -101,6 +101,15 @@ public class GlobalExceptionHandler {
     }
 
     /*
+    404 - Not Found.
+    El id del cupon que registra el canje no existe en el sistema.
+    */
+    @ExceptionHandler(CuponNotFoundException.class)
+    public ResponseEntity<APIResponse<Void>> handleCuponNotFound(CuponNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(APIResponse.error(ex.getMessage()));
+    }
+
+    /*
     403 - Forbidden.
     La persona no tiene el rol "Personal Convocatoria" y no puede cargar donaciones (RN-06).
     */
