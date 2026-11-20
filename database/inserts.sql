@@ -51,13 +51,13 @@ VALUES
     (3, 'Recepción de periféricos e impresoras en desuso.', 'Campaña RAEE - Caballito', -58.4400000, -34.6180000,
      '2027-05-22 08:30:00', '2027-05-22 13:30:00', 'Av. Rivadavia 5000', 'Pendiente', 2);
 
--- Cupones: valor_descuento es un entero de prueba; no se presupone su unidad funcional.
+-- Cupones para descuentos porcentuales en productos RAEE reacondicionados.
 INSERT INTO `Cupones` (`id_cupon`, `nombre`, `descripcion`, `valor_descuento`, `costo_cupon`, `activo`)
 VALUES
-    (1, 'Descuento en librería', 'Cupón de prueba para artículos de librería.', 10, 100, 1),
-    (2, 'Beneficio en cafetería', 'Cupón de prueba para consumo en cafetería.', 500, 250, 1),
-    (3, 'Accesorio sustentable', 'Cupón de prueba para un accesorio reutilizable.', 15, 400, 1),
-    (4, 'Cupón inactivo de prueba', 'Ejemplo para probar cupones no disponibles.', 100, 50, 0);
+    (1, 'Descuento en notebooks reacondicionadas', 'Descuento del 15% en la compra de notebooks reacondicionadas.', 15, 500, 1),
+    (2, 'Descuento en equipos de escritorio', 'Descuento del 10% en la compra de equipos de escritorio reacondicionados.', 10, 400, 1),
+    (3, 'Descuento en celulares reacondicionados', 'Descuento del 20% en la compra de celulares reacondicionados.', 20, 350, 1),
+    (4, 'Descuento en periféricos', 'Descuento del 10% en la compra de periféricos reacondicionados.', 10, 200, 1);
 
 -- No insertar Donaciones, Detalle_Donaciones ni Inventario_Cupones:
 -- esos registros se generan mediante los endpoints de la aplicación.
