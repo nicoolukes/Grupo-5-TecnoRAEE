@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,11 +21,9 @@ import com.aydsii.demo.enums.EstadoConvocatoria;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
 
 @Entity 
-@Table (name = "Convocatorias")
-@Check(constraints = "fecha_hora_fin >= fecha_hora_inicio")
+@Table(name = "Convocatorias", check = @CheckConstraint(constraint = "fecha_hora_fin >= fecha_hora_inicio"))
 @Getter
 @Setter
 @NoArgsConstructor

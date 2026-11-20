@@ -2,6 +2,7 @@ package com.aydsii.demo.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -11,11 +12,9 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
  
 @Entity
 @Table(name = "Detalle_Donaciones")
-@Check(constraints = "cantidad > 0")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,7 +33,8 @@ public class DetalleDonacion {
     @JoinColumn(name = "id_raee", nullable = false)
     private Raee raee;
  
-    @Column(name = "cantidad", nullable = false)
+    @Column(name = "cantidad", nullable = false,
+            check = @CheckConstraint(constraint = "cantidad > 0"))
     private Integer cantidad;
  
     /** true = funciona (Funcional), false = no funciona (No funcional). */

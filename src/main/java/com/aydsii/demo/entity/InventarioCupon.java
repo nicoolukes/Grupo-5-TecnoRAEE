@@ -1,6 +1,7 @@
 package com.aydsii.demo.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,14 +15,12 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
 import com.aydsii.demo.enums.EstadoCupon;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Inventario_Cupones")
-@Check(constraints = "puntos_gastados >= 0")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -41,7 +40,8 @@ public class InventarioCupon {
     @JoinColumn(name = "id_cupon", nullable = false)
     private Cupon cupon;
 
-    @Column(name = "puntos_gastados", nullable = false)
+    @Column(name = "puntos_gastados", nullable = false,
+            check = @CheckConstraint(constraint = "puntos_gastados >= 0"))
     private Integer puntosGastados;
 
     @Column(name = "fecha_canje", nullable = false)

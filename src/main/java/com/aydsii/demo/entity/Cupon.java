@@ -1,5 +1,6 @@
 package com.aydsii.demo.entity;
 import jakarta.persistence.Column;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,11 +9,9 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
  
 @Entity
 @Table(name = "Cupones")
-@Check(constraints = "costo_cupon > 0")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -29,7 +28,8 @@ public class Cupon {
     @Column(name = "descripcion", length = 255)
     private String descripcion;
 
-    @Column(name = "costo_cupon", nullable = false)
+    @Column(name = "costo_cupon", nullable = false,
+            check = @CheckConstraint(constraint = "costo_cupon > 0"))
     private Integer costoCupon;
 
     @Column(name = "valor_descuento", nullable = false, columnDefinition = "INT")

@@ -1,6 +1,7 @@
 package com.aydsii.demo.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.CheckConstraint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -10,11 +11,9 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Check;
  
 @Entity
-@Table(name = "RAEES")
-@Check(constraints = "puntos >= 0 AND puntos_extra >= 0")
+@Table(name = "RAEES", check = @CheckConstraint(constraint = "puntos >= 0 AND puntos_extra >= 0"))
 @Getter
 @Setter
 @NoArgsConstructor
