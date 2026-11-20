@@ -49,7 +49,9 @@ VALUES
     (2, 'Punto de recepción de celulares y accesorios.', 'Punto verde - Palermo', -58.4260000, -34.5880000,
      '2027-04-10 10:00:00', '2027-04-10 16:00:00', 'Av. Santa Fe 3500', 'En curso', 4),
     (3, 'Recepción de periféricos e impresoras en desuso.', 'Campaña RAEE - Caballito', -58.4400000, -34.6180000,
-     '2027-05-22 08:30:00', '2027-05-22 13:30:00', 'Av. Rivadavia 5000', 'Pendiente', 2);
+     '2027-05-22 08:30:00', '2027-05-22 13:30:00', 'Av. Rivadavia 5000', 'Pendiente', 2),
+    (4, 'Recepción y clasificación de equipos electrónicos recuperados.', 'Jornada RAEE - Recolección finalizada', -58.4050000, -34.6040000,
+     '2026-09-15 09:00:00', '2026-09-15 15:00:00', 'Av. Rivadavia 2500', 'Finalizada', 2);
 
 -- Cupones para descuentos porcentuales en productos RAEE reacondicionados.
 INSERT INTO `Cupones` (`id_cupon`, `nombre`, `descripcion`, `valor_descuento`, `costo_cupon`, `activo`)
