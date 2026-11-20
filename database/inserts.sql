@@ -24,10 +24,10 @@ INSERT INTO `Categorias` (`id_categoria`, `nombre`) VALUES
 INSERT INTO `Personas`
     (`id_persona`, `nombre`, `dni`, `direccion`, `password`, `nombre_usuario`, `puntos`, `id_rol`)
 VALUES
-    (101, 'Ana Cliente', '30000101', 'Av. Siempre Viva 101', 'ClienteDemo2026!', 'cliente.demo', 1200, 1),
-    (102, 'Bruno Convocatoria', '30000102', 'Calle Verde 202', 'PersonalDemo2026!', 'personal.demo', 0, 2),
-    (103, 'Carla Cliente', '30000103', NULL, 'ClienteDemo2!', 'cliente.demo2', 350, 1),
-    (104, 'Diego Convocatoria', '30000104', 'Pasaje del Reciclaje 404', 'PersonalDemo2!', 'personal.demo2', 0, 2);
+    (1, 'Ana Cliente', '30000101', 'Av. Siempre Viva 101', 'ClienteDemo2026!', 'cliente.demo', 1200, 1),
+    (2, 'Bruno Convocatoria', '30000102', 'Calle Verde 202', 'PersonalDemo2026!', 'personal.demo', 0, 2),
+    (3, 'Carla Cliente', '30000103', NULL, 'ClienteDemo2!', 'cliente.demo2', 350, 1),
+    (4, 'Diego Convocatoria', '30000104', 'Pasaje del Reciclaje 404', 'PersonalDemo2!', 'personal.demo2', 0, 2);
 
 -- RAEES: cada registro apunta a una categoría existente; puntos no negativos.
 INSERT INTO `RAEES`
@@ -44,20 +44,20 @@ VALUES
 INSERT INTO `Convocatorias`
     (`id_convocatoria`, `descripcion`, `nombre`, `longitud`, `latitud`, `fecha_hora_inicio`, `fecha_hora_fin`, `direccion`, `estado`, `id_persona`)
 VALUES
-    (201, 'Recepción y clasificación de equipos informáticos.', 'Jornada RAEE - Centro', -58.3816000, -34.6037000,
-     '2027-03-15 09:00:00', '2027-03-15 15:00:00', 'Av. de Mayo 100', 'Pendiente', 102),
-    (202, 'Punto de recepción de celulares y accesorios.', 'Punto verde - Palermo', -58.4260000, -34.5880000,
-     '2027-04-10 10:00:00', '2027-04-10 16:00:00', 'Av. Santa Fe 3500', 'En curso', 104),
-    (203, 'Recepción de periféricos e impresoras en desuso.', 'Campaña RAEE - Caballito', -58.4400000, -34.6180000,
-     '2027-05-22 08:30:00', '2027-05-22 13:30:00', 'Av. Rivadavia 5000', 'Pendiente', 102);
+    (1, 'Recepción y clasificación de equipos informáticos.', 'Jornada RAEE - Centro', -58.3816000, -34.6037000,
+     '2027-03-15 09:00:00', '2027-03-15 15:00:00', 'Av. de Mayo 100', 'Pendiente', 2),
+    (2, 'Punto de recepción de celulares y accesorios.', 'Punto verde - Palermo', -58.4260000, -34.5880000,
+     '2027-04-10 10:00:00', '2027-04-10 16:00:00', 'Av. Santa Fe 3500', 'En curso', 4),
+    (3, 'Recepción de periféricos e impresoras en desuso.', 'Campaña RAEE - Caballito', -58.4400000, -34.6180000,
+     '2027-05-22 08:30:00', '2027-05-22 13:30:00', 'Av. Rivadavia 5000', 'Pendiente', 2);
 
 -- Cupones: valor_descuento es un entero de prueba; no se presupone su unidad funcional.
 INSERT INTO `Cupones` (`id_cupon`, `nombre`, `descripcion`, `valor_descuento`, `costo_cupon`, `activo`)
 VALUES
-    (301, 'Descuento en librería', 'Cupón de prueba para artículos de librería.', 10, 100, 1),
-    (302, 'Beneficio en cafetería', 'Cupón de prueba para consumo en cafetería.', 500, 250, 1),
-    (303, 'Accesorio sustentable', 'Cupón de prueba para un accesorio reutilizable.', 15, 400, 1),
-    (304, 'Cupón inactivo de prueba', 'Ejemplo para probar cupones no disponibles.', 100, 50, 0);
+    (1, 'Descuento en librería', 'Cupón de prueba para artículos de librería.', 10, 100, 1),
+    (2, 'Beneficio en cafetería', 'Cupón de prueba para consumo en cafetería.', 500, 250, 1),
+    (3, 'Accesorio sustentable', 'Cupón de prueba para un accesorio reutilizable.', 15, 400, 1),
+    (4, 'Cupón inactivo de prueba', 'Ejemplo para probar cupones no disponibles.', 100, 50, 0);
 
 -- No insertar Donaciones, Detalle_Donaciones ni Inventario_Cupones:
 -- esos registros se generan mediante los endpoints de la aplicación.
