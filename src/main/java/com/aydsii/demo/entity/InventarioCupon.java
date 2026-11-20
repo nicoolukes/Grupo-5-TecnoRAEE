@@ -14,11 +14,14 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Check;
 import com.aydsii.demo.enums.EstadoCupon;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "inventario_cupones") //chequear mismo nombre que el DER
+@Table(name = "Inventario_Cupones")
+@Check(constraints = "puntos_gastados >= 0")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,20 +41,17 @@ public class InventarioCupon {
     @JoinColumn(name = "id_cupon", nullable = false)
     private Cupon cupon;
 
-    //chequear que respete nombre con el DER
-    @Column(nullable = false)
-     @JoinColumn(name = "puntos_gastados")
+    @Column(name = "puntos_gastados", nullable = false)
     private Integer puntosGastados;
 
-    @Column(nullable = false)
-    @JoinColumn(name = "fecha_canje")
+    @Column(name = "fecha_canje", nullable = false)
     private LocalDate fechaCanje;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "estado", nullable = false, length = 45)
     private EstadoCupon estado;
 
     // null hasta que el cupón se use
-    @JoinColumn(name = "fecha_uso")
-    private LocalDate fechaUso;
+    @Column(name = "fecha_uso", columnDefinition = "DATETIME")
+    private LocalDateTime fechaUso;
 }

@@ -11,9 +11,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Check;
  
 @Entity
 @Table(name = "Detalle_Donaciones")
+@Check(constraints = "cantidad > 0")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,18 +26,18 @@ public class DetalleDonacion {
  
     @MapsId("idDonacion")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_donacion")
+    @JoinColumn(name = "id_donacion", nullable = false)
     private Donacion donacion;
  
     @MapsId("idRaee")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_raee")
+    @JoinColumn(name = "id_raee", nullable = false)
     private Raee raee;
  
-    @Column(nullable = false)
+    @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
  
     /** true = funciona (Funcional), false = no funciona (No funcional). */
-    @Column(nullable = false)
+    @Column(name = "funciona", nullable = false, columnDefinition = "TINYINT(1)")
     private Boolean funciona;
 }

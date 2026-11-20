@@ -19,5 +19,6 @@ public class Categoria {
     @Column(name = "id_categoria")
     private Integer id;
  
+    @Column(name = "nombre", nullable = false, length = 100, unique = true)
     private String nombre;
 }

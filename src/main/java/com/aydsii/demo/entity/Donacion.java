@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Check;
  
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import java.util.List;
  
 @Entity
 @Table(name = "Donaciones")
+@Check(constraints = "puntos_totales >= 0")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,9 +33,10 @@ public class Donacion {
     @Column(name = "id_donacion")
     private Integer id;
  
+    @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    @Column(name = "puntos_totales", nullable = false)
+    @Column(name = "puntos_totales", nullable = false, columnDefinition = "INT DEFAULT 0")
     private Integer puntosTotales;
  
     @OneToMany(mappedBy = "donacion", cascade = CascadeType.ALL, orphanRemoval = true)

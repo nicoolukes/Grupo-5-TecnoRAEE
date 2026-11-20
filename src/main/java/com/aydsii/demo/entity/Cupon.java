@@ -14,13 +14,15 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Check;
  
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
  
 @Entity
-@Table(name = "cupones") //chequear mismo nombre que el DER
+@Table(name = "Cupones")
+@Check(constraints = "costo_cupon > 0")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,17 +33,18 @@ public class Cupon {
     @Column(name = "id_cupon")
     private Integer idCupon;
 
-    //chequear que los nombres sean igual a los del DER
+    @Column(name = "nombre", nullable = false, length = 45)
     private String nombre;
+
+    @Column(name = "descripcion", length = 255)
     private String descripcion;
 
-    @Column(nullable = false)
-    @JoinColumn(name = "costo_cupon")
+    @Column(name = "costo_cupon", nullable = false)
     private Integer costoCupon;
 
-    @JoinColumn(name = "valor_descuento")
-    private String valorDescuento;
+    @Column(name = "valor_descuento", nullable = false, columnDefinition = "INT")
+    private Integer valorDescuento;
 
-    @Column(nullable = false)
+    @Column(name = "activo", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
     private Boolean activo;
 }
